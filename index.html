@@ -103,6 +103,7 @@
 	</div>
 	<style type="text/css">
 	#main-content {
+		display: none;
 		width: 100%;
 		max-width: 560px;
 		margin: 0px 25px;
@@ -119,6 +120,26 @@
 	@media screen and (max-width:560px) {}
 	</style>
 	<script>
+
+	const secretDiv = document.getElementById("main-conten");
+	const konamiCode = [
+		"ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+		"ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+		"b", "a"
+		];
+	let inputBuffer = [];
+	
+	document.addEventListener("keydown", (e) => {
+		inputBuffer.push(e.key);
+		if (inputBuffer.length > konamiCode.length) {
+			inputBuffer.shift();
+		}
+		
+		if (inputBuffer.join("") === konamiCode.join("")) {
+			secretDiv.style.display = "block";
+		}
+	});	
+
 	var c = document.getElementById("matrix");
 	var ctx = c.getContext("2d");
 	c.height = window.innerHeight;
